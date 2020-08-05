@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="button-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button id="button-increase"class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5 id="case-price">$59</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -76,6 +76,30 @@
             </div>
          </div>
       </div>
+      <script>
+         //adding event listener
+         document.getElementById('button-increase').addEventListener('click',function(){
+            const caseInput = document.getElementById('case-count');
+            //capturing 1 
+            const caseCount = parseInt(caseInput.value);
+            //increasing value 1
+            const caseNewCount = caseCount + 1;
+            //set new value
+            caseInput.value = caseNewCount;
+            const caseTotal = caseNewCount * 59;
+            document.getElementById('case-price').innerText = '$' + caseTotal;
+         })
+
+         document.getElementById('button-decrease').addEventListener('click',function(){
+            const caseInput = document.getElementById('case-count');
+            const caseCount = parseInt(caseInput.value);
+            const NewCaseCount = caseCount - 1;
+            caseInput.value = NewCaseCount;
+            const caseTotal = NewCaseCount * 59;
+            document.getElementById('case-price').innerText = '$' + caseTotal;
+         })
+
+      </script>
    </section>
 </body>
 

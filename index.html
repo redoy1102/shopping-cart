@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handProductChange01(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handProductChange01(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5 id="phn-price">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="button-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="handProductChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="case-count" type="text" class="form-control text-center" value="1">
-                           <button id="button-increase"class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handProductChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="case-price">$59</h5>
@@ -77,30 +77,42 @@
          </div>
       </div>
       <script>
-         //adding event listener
-         document.getElementById('button-increase').addEventListener('click',function(){
-            const caseInput = document.getElementById('case-count');
-            //capturing 1 
+
+         //iPhone 11 Silicone Case - Black
+         function handProductChange(isIncrease){
+            const caseInput = document.getElementById('case-count'); 
             const caseCount = parseInt(caseInput.value);
-            //increasing value 1
-            const caseNewCount = caseCount + 1;
-            //set new value
+            let caseNewCount = caseCount;
+            if(isIncrease == true){
+               caseNewCount = caseCount + 1;
+            }
+            if(isIncrease == false && caseCount > 0){
+               caseNewCount = caseCount - 1;
+            }
             caseInput.value = caseNewCount;
             const caseTotal = caseNewCount * 59;
             document.getElementById('case-price').innerText = '$' + caseTotal;
-         })
+         }
 
-         document.getElementById('button-decrease').addEventListener('click',function(){
-            const caseInput = document.getElementById('case-count');
-            const caseCount = parseInt(caseInput.value);
-            const NewCaseCount = caseCount - 1;
-            caseInput.value = NewCaseCount;
-            const caseTotal = NewCaseCount * 59;
-            document.getElementById('case-price').innerText = '$' + caseTotal;
-         })
+         //iPhone 11 128GB Black
+         function handProductChange01(isIncrease){
+            const phoneCount = document.getElementById('phone-count');
+            const phnCount = parseInt(phoneCount.value);
+            let NewPhnCount = phnCount;
+            if(isIncrease == true){
+               NewPhnCount = phnCount + 1;
+            }
+            if(isIncrease == false && phnCount > 0){
+               NewPhnCount = phnCount - 1;
+            }
+            phoneCount.value = NewPhnCount;
+            const PhoneTotal = NewPhnCount * 1219;
+            document.getElementById('phn-price').innerText = '$' + PhoneTotal;
+         }
+
+
 
       </script>
    </section>
 </body>
-
 </html>
